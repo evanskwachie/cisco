@@ -59,7 +59,7 @@
 </table>
  </div>
  
-   <!-- Modal -->
+  <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -73,17 +73,24 @@
          <form method="POST" action="">
   <div class="form-group">
     <label for="exampleInputEmail1">STUDENT ID</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter student id" required value="<?php echo strtoupper($stud_id) ?>">
+    <input type="text" name="stud_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter student id" required value="<?php echo strtoupper($stud_id) ?>">
     <small id="emailHelp" class="form-text text-muted">Update when neccessary.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Remarks</label>
-    <textarea class="form-control" id="exampleInputPassword1" placeholder="Password" required><?php echo $main_lib_rmks ?></textarea>
+    <textarea class="form-control" id="exampleInputPassword1" placeholder="remarks" name="rmks" required><?php echo $main_lib_rmks ?></textarea>
+  </div>
+  <div class="form-group">
+    <label>Cleared</label>
+     <select class="form-control" name="val">
+          <option value="<?php echo $val ?>"><?php echo $txt.' '.$color;?></option>
+          <option value="<?php echo $val2 ?>"><?php echo $txt2.' '.$color2;?></option>
+        </select>
   </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" name="update_btn">Save changes</button>
       </div>
     </form>
     </div>

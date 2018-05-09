@@ -1,16 +1,181 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php include 'includes/head.php';
+  
+  require_once 'core/functions.php';
+
+  $connected = connectDB();
+
+  $stud_id = 'PS/ITC/14/0016';
+
+  // query for clearance results with index number;
+  $query = "SELECT * FROM clear WHERE stud_id = '{$stud_id}'";
+
+  $run = $connected->query($query);
+
+  if ($run) {
+    # code...
+      while ($row = mysqli_fetch_assoc($run)) {
+             # code...
+
+            $stud_id = $row['stud_id'];
+
+            // main library
+            $main_lib = $row['main_lib'];
+            $main_lib_rmks = $row['main_lib_rmks'];
+
+            // faculty officer
+            $faculty_officer = $row['faculty_officer'];
+            $faculty_rmks = $row['faculty_rmks'];
+
+            // faculty library
+            $faculty_lib = $row['faculty_lib'];
+            $faculty_lib_rmks = $row['faculty_lib_rmks'];
+            
+            // audit section
+            $audit_section = $row['audit_section'];
+            $audit_rmks = $row['audit_rmks'];
+
+            // accounts section
+            $acc_section = $row['acc_section'];
+            $acc_rmks = $row['acc_rmks'];
+
+            // sports coach office
+            $sports_coach = $row['sports_coach'];
+            $sports_rmks = $row['sports_rmks'];
+
+            // hal bursar
+            $hall_bursar = $row['hall_bursar'];
+            $hall_rmks = $row['hall_rmks'];
+
+           }
+
+           if ($main_lib == 1) {
+              # code...
+              $m_color = '&#9989;';
+
+            }else{
+               $m_color = '&#10062;';
+
+            }
+
+            if ($faculty_officer == 1) {
+              # code...
+              $color = '&#9989;';
+
+            }else{
+
+               $fa_color = '&#10062;';
+
+            }
+
+            if ($faculty_lib == 1) {
+              # code...
+              // $txt = 'Yes';
+              // $val = 1;
+              $f_color = '&#9989;';
+
+              // $txt2 = 'No';
+              // $val2 = 0;
+              // $color2 = '&#10062;';
+            }else{
+
+               // $txt = 'No';
+               // $val = 0;
+               $f_color = '&#10062;';
+
+              //  $txt2 = 'Yes';
+              //  $val2 = 1;
+              // $color2 = '&#9989;';
+
+            }
+
+            if ($audit_section == 1) {
+              # code...
+              // $txt = 'Yes';
+              // $val = 1;
+              $a_color = '&#9989;';
+
+              // $txt2 = 'No';
+              // $val2 = 0;
+              // $color2 = '&#10062;';
+            }else{
+
+               // $txt = 'No';
+               // $val = 0;
+               $a_color = '&#10062;';
+
+              //  $txt2 = 'Yes';
+              //  $val2 = 1;
+              // $color2 = '&#9989;';
+
+            }
+
+             if ($acc_section == 1) {
+              # code...
+              // $txt = 'Yes';
+              // $val = 1;
+              $acc_color = '&#9989;';
+
+              // $txt2 = 'No';
+              // $val2 = 0;
+              // $color2 = '&#10062;';
+            }else{
+
+               // $txt = 'No';
+               // $val = 0;
+               $acc_color = '&#10062;';
+
+              //  $txt2 = 'Yes';
+              //  $val2 = 1;
+              // $color2 = '&#9989;';
+
+            }
+
+            if ($sports_coach == 1) {
+              # code...
+              // $txt = 'Yes';
+              // $val = 1;
+              $s_color = '&#9989;';
+
+              // $txt2 = 'No';
+              // $val2 = 0;
+              // $color2 = '&#10062;';
+            }else{
+
+               // $txt = 'No';
+               // $val = 0;
+               $s_color = '&#10062;';
+
+              //  $txt2 = 'Yes';
+              //  $val2 = 1;
+              // $color2 = '&#9989;';
+
+            }
+
+            if ($hall_bursar == 1) {
+              # code...
+              // $txt = 'Yes';
+              // $val = 1;
+              $h_color = '&#9989;';
+
+              // $txt2 = 'No';
+              // $val2 = 0;
+              // $color2 = '&#10062;';
+            }else{
+
+               // $txt = 'No';
+               // $val = 0;
+               $h_color = '&#10062;';
+
+              //  $txt2 = 'Yes';
+              //  $val2 = 1;
+              // $color2 = '&#9989;';
+
+            }
+  }
 
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+ ?>
 
-    <title>Student Clearance</title>
-  </head>
   <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
@@ -67,44 +232,44 @@
   <tbody>
     <tr>
       <th scope="row">Faculty Officer</th>
-      <td>N/L</td>
-      <td><span style="font-size: 23px;">&#9989;</span></td>
+      <td><?php echo $faculty_rmks ?></td>
+      <td><span style="font-size: 23px;"><?php echo $fa_color ?></span></td>
       <!-- <td>@mdo</td> -->
     </tr>
     <tr>
       <th scope="row">Department / Faculty Library</th>
-     <td>5 books not returned</td>
-      <td><span style="font-size: 23px;">&#10062;</span></td>
+     <td><?php echo $faculty_lib_rmks ?></td>
+      <td><span style="font-size: 23px;"><?php echo $f_color ?></span></td>
       <!-- <td>@fat</td> -->
     </tr>
     <tr>
       <th scope="row">Main Library</th>
-      <td>N/L</td>
-     <td><span style="font-size: 23px;">&#9989;</span></td>
+      <td><?php echo $main_lib_rmks ?></td>
+     <td><span style="font-size: 23px;"><?php echo $m_color ?></span></td>
       <!-- <td>@twitter</td> -->
     </tr>
     <tr>
       <th scope="row">Audit Section</th>
-      <td>N/L</td>
-     <td><span style="font-size: 23px;">&#9989;</span></td>
+      <td><?php echo $audit_rmks ?></td>
+     <td><span style="font-size: 23px;"><?php echo $a_color ?></span></td>
       <!-- <td>@twitter</td> -->
     </tr>
     <tr>
       <th scope="row">Accounts Section</th>
-      <td>N/L</td>
-     <td><span style="font-size: 23px;">&#9989;</span></td>
+      <td><?php echo $acc_rmks ?></td>
+     <td><span style="font-size: 23px;"><?php echo $acc_color ?></span></td>
       <!-- <td>@twitter</td> -->
     </tr>
     <tr>
       <th scope="row">Sports Coach</th>
-     <td>N/L</td>
-      <td><span style="font-size: 23px;">&#9989;</span></td>
+     <td><?php echo $sports_rmks ?></td>
+      <td><span style="font-size: 23px;"><?php echo $s_color ?></span></td>
       <!-- <td>@twitter</td> -->
     </tr>
     <tr>
       <th scope="row">Hall Bursar</th>
-     <td>N/L</td>
-      <td><span style="font-size: 23px;">&#9989;</span></td>
+     <td><?php echo $hall_rmks ?></td>
+      <td><span style="font-size: 23px;"><?php echo $h_color ?></span></td>
       <!-- <td>@twitter</td> -->
     </tr>
   </tbody>

@@ -111,6 +111,139 @@
 
     }
   }
+
+  // updating the clearance Form
+  function update_clearance($stud_id, $rmks, $val, $section){
+
+    $connected = connectDB();
+
+    switch ($section) {
+      case 1:
+        # faculty officer
+          $query = "UPDATE clear SET stud_id = '{$stud_id}', faculty_officer = '{$val}', 
+            faculty_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+
+        break;
+
+      case 2:
+        # faculty library
+        $query = "UPDATE clear SET stud_id = '{$stud_id}', faculty_lib = '{$val}', 
+            faculty_lib_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+       
+        
+        break;
+
+       case 3:
+        # main library
+        $query = "UPDATE clear SET stud_id = '{$stud_id}', main_lib = '{$val}', 
+            main_lib_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+       
+        break;
+
+      case 4:
+        # audit section
+      $query = "UPDATE clear SET stud_id = '{$stud_id}', audit_section = '{$val}', 
+            audit_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+        
+        break;
+      
+      case 5:
+        # accounts section
+      $query = "UPDATE clear SET stud_id = '{$stud_id}', acc_section = '{$val}', 
+            acc_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+        
+        break;
+
+      case 6:
+        # sports coach office
+        $query = "UPDATE clear SET stud_id = '{$stud_id}', sports_coach = '{$val}', 
+            sports_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+              echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+        break;
+
+      case 7:
+        # hall bursar
+      $query = "UPDATE clear SET stud_id = '{$stud_id}', hall_bursar = '{$val}', 
+            hall_rmks = '{$rmks}' WHERE stud_id = '{$stud_id}'";
+
+            $run = $connected->query($query);
+
+            if ($run) {
+              # code...
+             echo "<script>alert('clearance updated succesfully')</script>";
+            }else {
+
+              echo "<script>alert('something went wrong')</script>";
+            }
+      
+        break;
+
+      default:
+        # code...
+        break;
+    }
+
+    
+  }
   
 //creating a registeration function
   function register_admin($email, $password, $section){
@@ -147,7 +280,7 @@
         }
     }
 
- /*****MasterMind Ghana *****/
+ /**********/
 //an algorithm for password hashing
   function hash_value($algo, $data, $salt = null) {
         if(is_null($salt) === true) {

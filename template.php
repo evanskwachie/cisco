@@ -38,13 +38,34 @@ $connected = connectDB();
              # code...
 
             $stud_id = $row['stud_id'];
+
+            // main library
             $main_lib = $row['main_lib'];
             $main_lib_rmks = $row['main_lib_rmks'];
+
+            // faculty officer
             $faculty_officer = $row['faculty_officer'];
             $faculty_rmks = $row['faculty_rmks'];
 
+            // faculty library
+            $faculty_lib = $row['faculty_lib'];
+            $faculty_lib_rmks = $row['faculty_lib_rmks'];
+            
+            // audit section
+            $audit_section = $row['audit_section'];
+            $audit_rmks = $row['audit_rmks'];
 
+            // accounts section
+            $acc_section = $row['acc_section'];
+            $acc_rmks = $row['acc_rmks'];
 
+            // sports coach office
+            $sports_coach = $row['sports_coach'];
+            $sports_rmks = $row['sports_rmks'];
+
+            // hal bursar
+            $hall_bursar = $row['hall_bursar'];
+            $hall_rmks = $row['hall_rmks'];
 
            }
 
@@ -53,7 +74,7 @@ $connected = connectDB();
                 case 1:
                   # code...
                  
-                  $layout = 'includes/falculty-officer.php';
+                  $layout = 'includes/faculty-officer.php';
                   break;
 
                 case 2:
@@ -70,25 +91,21 @@ $connected = connectDB();
 
                 case 4:
                   # code...
-                 $section = ucfirst('Audit Section');
                   $layout = 'includes/audit-section.php';
                   break;
                 
                 case 5:
                   # code...
-                 $section = ucfirst('Account Section');
                   $layout = 'includes/accounts-section.php';
                   break;
 
                 case 6:
                   # code...
-                 $section = ucfirst('Sports Coach Office Section');
                   $layout = 'includes/sports-coach-office.php';
                   break;
 
                 case 7:
                   # code...
-                 $section = ucfirst('Hall Bursar Section');
                  $layout = 'includes/hall-bursar.php';
                   break;
 
@@ -113,20 +130,34 @@ $connected = connectDB();
 
          $res = "<span class='alert alert-danger'> searching by other goes here</span>";
 
-       }
-
-        
-       
-
-
-      
+       }    
 
   }else {
 
     $res = "<span class='alert alert-danger'>please enter a search query</span>";
   }
 
+  // for updating student's clearance form
+if (isset($_POST['update_btn'])) {
+  # code...
+  if (!empty($_POST['stud_id']) && !empty($_POST['rmks'])) {
+    # code...
+    $stud_id = $_POST['stud_id'];
+    $rmks = addslashes($_POST['rmks']);
+    $val = $_POST['val'];
 
+    $section = $_SESSION['section'];
+
+    update_clearance($stud_id, $rmks, $val, $section);
+
+    // echo $stud_id.'<br>'.$rmks.'<br>'.$val.'<br>'.$section;
+    
+
+  }
+  
+  
+}
+  
 ?>
 
  <body>
@@ -150,43 +181,36 @@ if (authenticate_user()) {
       case 1:
         # code...
        $section = ucfirst('Faculty Officer Section');
-        $layout = 'includes/falculty-officer.php';
         break;
 
       case 2:
         # code...
        $section = ucfirst('Faculty Library Section');
-        $layout = 'includes/department-library.php';
         break;
 
        case 3:
         # code...
        $section = ucfirst('Main Library Section');
-       // $layout = 'includes/main_lib.php';
         break;
 
       case 4:
         # code...
        $section = ucfirst('Audit Section');
-        $layout = 'includes/audit-section.php';
         break;
       
       case 5:
         # code...
-       $section = ucfirst('Account Section');
-        $layout = 'includes/accounts-section.php';
+       $section = ucfirst('Accounts Section');
         break;
 
       case 6:
         # code...
        $section = ucfirst('Sports Coach Office Section');
-        $layout = 'includes/sports-coach-office.php';
         break;
 
       case 7:
         # code...
        $section = ucfirst('Hall Bursar Section');
-       $layout = 'includes/hall-bursar.php';
         break;
 
       default:
@@ -228,7 +252,7 @@ if (authenticate_user()) {
 <!-- section  -->
  <div class="container" style="margin-top: 20px;">
      <div class="alert alert-primary row justify-content-md-center" align="center">
-    <p class="">Kindly leave a remark for he student not being cleared. Thank you</p>
+    <p class="">Kindly leave a remark for the student not being cleared. Thank you</p>
   </div>
   <!-- section for displaying students -->
   <section class="container-fluid" style="margin-top: 20px;">
